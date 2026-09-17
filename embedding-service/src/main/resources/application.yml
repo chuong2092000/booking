@@ -1,0 +1,55 @@
+server:
+  port: ${EMBEDDING_PORT:7101}
+
+spring:
+  application:
+    name: embedding-service
+  profiles:
+    active: dev
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
+  cloud:
+    config:
+      discovery:
+        enabled: ${CONFIG_DISCOVERY_ENABLE:false}
+        service-id: config-server
+  datasource:
+    url: ${DB_HOST:jdbc:postgresql://localhost}:${DB_PORT:5432}/embedding_db
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:example}
+    driver-class-name: org.postgresql.Driver
+  ai:
+    google:
+      genai:
+        api-key: AQ.Ab8RN6KMFxe5VDK35FZXBHLSJAOXsFmrzfW_mySNlyDE95QzLg
+        chat:
+          model: gemini-3.5-flash
+        embedding:
+          api-key: AQ.Ab8RN6KMFxe5VDK35FZXBHLSJAOXsFmrzfW_mySNlyDE95QzLg
+          text:
+            model: gemini-embedding-001
+            options:
+              dimensions: 768
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 768
+        initialize-schema: false
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_HOST:http://localhost}:${EUREKA_PORT:8761}/eureka/
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh,health,info"
+
+#app:
+#  agent:
+#    api-key: ${GEMINI-KEY:}
+#    model-name: gemma-4-26b-a4b-it

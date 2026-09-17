@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/f7bb15bd-c0d0-450f-8546-06e24a624cc6/script_out_box_cm.sql" value="f7bb15bd-c0d0-450f-8546-06e24a624cc6" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/f7bb15bd-c0d0-450f-8546-06e24a624cc6/script_processed_event_cm.sql" value="f7bb15bd-c0d0-450f-8546-06e24a624cc6" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/f7bb15bd-c0d0-450f-8546-06e24a624cc6/script_sql_booking_service.sql" value="f7bb15bd-c0d0-450f-8546-06e24a624cc6" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/f7bb15bd-c0d0-450f-8546-06e24a624cc6/script_sql_embedding_service.sql" value="f7bb15bd-c0d0-450f-8546-06e24a624cc6" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/f7bb15bd-c0d0-450f-8546-06e24a624cc6/script_sql_hotel_service.sql" value="f7bb15bd-c0d0-450f-8546-06e24a624cc6" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/f7bb15bd-c0d0-450f-8546-06e24a624cc6/script_sql_payment_service.sql" value="f7bb15bd-c0d0-450f-8546-06e24a624cc6" />
+  </component>
+</project>

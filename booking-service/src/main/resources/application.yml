@@ -1,0 +1,49 @@
+server:
+  port: ${BOOKING_PORT:8101}
+
+spring:
+  application:
+    name: booking-service
+  profiles:
+    active: dev
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
+  cloud:
+    config:
+      discovery:
+        enabled: ${CONFIG_DISCOVERY_ENABLE:false}
+        service-id: config-server
+  datasource:
+    url: ${DB_HOST:jdbc:postgresql://localhost}:${DB_PORT:5432}/booking_db
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:example}
+    driver-class-name: org.postgresql.Driver
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: BookingScheduler
+            instanceId: AUTO
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            isClustered: true
+            clusterCheckinInterval: 5000
+          threadPool:
+            threadCount: 5
+
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_HOST:http://localhost}:${EUREKA_PORT:8761}/eureka/
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh,health,info"

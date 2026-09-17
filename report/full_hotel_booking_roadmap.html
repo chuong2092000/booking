@@ -1,0 +1,276 @@
+<style>
+.phase-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:10px}
+.phase-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.phase-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+.phase-title{font-size:15px;font-weight:500;color:var(--color-text-primary);line-height:1.3}
+.phase-sub{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.week-badge{font-size:11px;color:var(--color-text-tertiary);margin-left:auto;white-space:nowrap}
+.task-list{display:flex;flex-direction:column;gap:5px}
+.task{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--color-text-secondary);padding:6px 8px;border-radius:var(--border-radius-md);background:var(--color-background-secondary);cursor:pointer;transition:background .15s;line-height:1.5}
+.task:hover{background:var(--color-background-tertiary)}
+.task-num{font-size:11px;font-weight:500;min-width:20px;padding-top:1px;color:var(--color-text-tertiary);flex-shrink:0}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:var(--border-radius-md);margin-left:5px;vertical-align:middle;font-weight:500}
+.tag-be{background:#E1F5EE;color:#0F6E56}
+.tag-ai{background:#EEEDFE;color:#534AB7}
+.tag-infra{background:#E6F1FB;color:#185FA5}
+.tag-test{background:#FAEEDA;color:#854F0B}
+.tag-db{background:#FAECE7;color:#993C1D}
+.connector{display:flex;justify-content:center;height:16px;align-items:center;color:var(--color-text-tertiary);font-size:16px;margin:-2px 0}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.legend-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--color-text-secondary)}
+.milestone{font-size:12px;margin-top:8px;padding:5px 10px;border-radius:var(--border-radius-md);background:var(--color-background-info);color:var(--color-text-info);display:inline-block}
+</style>
+
+<h2 class="sr-only">Roadmap kiến trúc Multi-Agent Hotel Booking System hoàn chỉnh cho Báo cáo</h2>
+
+<div class="legend">
+  <span class="legend-item"><span class="tag tag-infra">Infra</span>Infrastructure</span>
+  <span class="legend-item"><span class="tag tag-be">BE</span>Backend</span>
+  <span class="legend-item"><span class="tag tag-db">DB</span>Database</span>
+  <span class="legend-item"><span class="tag tag-test">Test</span>Testing</span>
+  <span class="legend-item"><span class="tag tag-ai">AI</span>Agent/MAS</span>
+</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <div class="phase-num" style="background:#E6F1FB;color:#185FA5">0</div>
+    <div>
+      <div class="phase-title">Phase 0 — Project Setup & Distributed Infrastructure</div>
+      <div class="phase-sub">Thiết lập nền móng kiến trúc hệ thống phân tán phân tầng</div>
+    </div>
+    <span class="week-badge">Tuần 1</span>
+  </div>
+  <div class="task-list">
+    <div class="task" onclick="sendPrompt('Tạo cấu trúc mono-repo cho dự án hotel booking microservices sử dụng Maven Multi-Module, phân tách rõ module api-gateway, core-services, và ai-agent-services')">
+      <span class="task-num">0.1</span><span>Tạo cấu trúc mono-repo Maven multi-module chuẩn<span class="tag tag-infra">Infra</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Viết file docker-compose.yml setup môi trường local bao gồm: PostgreSQL, Redis Cluster, RabbitMQ (hoặc Kafka), Eureka Server, Keycloak, và pgvector')">
+      <span class="task-num">0.2</span><span>Docker Compose: Cơ sở hạ tầng & Middleware phân tán<span class="tag tag-infra">Infra</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Setup Eureka Discovery Server trong Spring Boot, cấu hình các tham số heartbeat và phục hồi dịch vụ tự động')">
+      <span class="task-num">0.3</span><span>Eureka Server (Service Discovery & Registry)<span class="tag tag-infra">Infra</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Setup Spring Cloud Config Server kết nối Git repository bảo mật, cấu hình mã hóa profile dev/prod')">
+      <span class="task-num">0.4</span><span>Config Server tập trung (Spring Cloud Config)<span class="tag tag-infra">Infra</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Cấu hình Spring Cloud Gateway: Định nghĩa các routing rules động, xử lý Rate Limiting bằng Redis RateLimiter')">
+      <span class="task-num">0.5</span><span>API Gateway: Routing rules & Rate Limiting tập trung<span class="tag tag-infra">Infra</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng GitHub Actions CI pipeline để tự động hóa quy trình: mvn clean test, phân tích mã nguồn SonarQube, và Dockerize image đẩy lên Registry')">
+      <span class="task-num">0.6</span><span>GitHub Actions CI/CD & Test Automation pipeline<span class="tag tag-infra">Infra</span></span>
+    </div>
+  </div>
+  <div class="milestone">Milestone: Khởi chạy hạ tầng container hoàn tất, API Gateway nhận diện được các service đăng ký trên Eureka.</div>
+</div>
+
+<div class="connector">↓</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <div class="phase-num" style="background:#EEEDFE;color:#534AB7">1</div>
+    <div>
+      <div class="phase-title">Phase 1 — Identity & User Profile Service</div>
+      <div class="phase-sub">Xác thực tập trung với Keycloak (OAuth2/OIDC) và Quản lý thực thể User</div>
+    </div>
+    <span class="week-badge">Tuần 2–3</span>
+  </div>
+  <div class="task-list">
+    <div class="task" onclick="sendPrompt('Hướng dẫn cấu hình Keycloak bằng Docker: Tạo Realm (Hotel-Realm), OAuth Client, định nghĩa Roles (USER, HOTEL_OWNER, ADMIN). Thiết kế bảng users trong Spring Boot (PostgreSQL) sử dụng keycloak_id (UUID) làm khóa liên kết ngoại.')">
+      <span class="task-num">1.1</span><span>Cấu hình IAM Keycloak & Thiết kế thực thể <code>User</code> nghiệp vụ<span class="tag tag-db">DB</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng cơ chế đồng bộ User: Viết REST API Endpoint nhận Webhook từ Keycloak, hoặc implement Keycloak Event Listener SPI nhằm tự động tạo/cập nhật bản ghi profile trong bảng users (PostgreSQL) khi có tài khoản mới.')">
+      <span class="task-num">1.2</span><span>Đồng bộ hóa dữ liệu User từ Keycloak sang App DB<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Cấu hình Spring Cloud Gateway đóng vai trò OAuth2 Resource Server: Tích hợp với Keycloak để kiểm tra tính hợp lệ của JWT, trích xuất cấu trúc claims thông qua JwtDecoder.')">
+      <span class="task-num">1.3</span><span>API Gateway: Xác thực tập trung và Giải mã JWT Token<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng lớp bảo mật phân quyền RBAC: Cấu hình Custom JwtAuthenticationConverter tại các microservices để trích xuất quyền hạn từ claim realm_access.roles của Keycloak và ánh xạ vào hệ thống phân quyền @PreAuthorize của Spring Security.')">
+      <span class="task-num">1.4</span><span>Cấu hình RBAC & Phân quyền dựa trên Keycloak Claims<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Viết integration test cho lớp Security: Sử dụng SecurityMockMvcRequestPostProcessors.jwt() để giả lập (mock) các JWT Token với các scope/roles khác nhau, test chặn truy cập trái phép.')">
+      <span class="task-num">1.5</span><span>Integration Test bảo mật với Mocked JWT & Roles<span class="tag tag-test">Test</span></span>
+    </div>
+  </div>
+  <div class="milestone">Milestone: Đăng nhập qua Keycloak nhận Access Token -> Gửi request qua Gateway thành công -> Đọc được mã định danh người dùng tại các service sau.</div>
+</div>
+
+<div class="connector">↓</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <div class="phase-num" style="background:#E1F5EE;color:#0F6E56">2</div>
+    <div>
+      <div class="phase-title">Phase 2 — Hotel & Inventory Management Service</div>
+      <div class="phase-sub">Core Domain: Quản lý khách sạn, lịch phòng trống và tối ưu hóa tìm kiếm</div>
+    </div>
+    <span class="week-badge">Tuần 4–6</span>
+  </div>
+  <div class="task-list">
+    <div class="task" onclick="sendPrompt('Thiết kế lược đồ quan hệ PostgreSQL (JPA): Khởi tạo các thực thể Hotel, RoomType, Room, Amenity với quan hệ phù hợp. Tạo chỉ mục (Index) trên các cột thường xuyên tìm kiếm như city, price.')">
+      <span class="task-num">2.1</span><span>Thiết kế thực thể: <code>Hotel</code>, <code>RoomType</code>, <code>Room</code>, <code>Amenity</code><span class="tag tag-db">DB</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng các REST APIs CRUD hoàn chỉnh cho quản trị khách sạn và loại phòng, hỗ trợ phân trang (Pageable) và tối ưu truy vấn ngăn lỗi N+1 Query bằng EntityGraph.')">
+      <span class="task-num">2.2</span><span>Hotel & Room Management: CRUD APIs nghiệp vụ cơ bản<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Thiết kế giải pháp Availability Calendar: Xây dựng bảng theo dõi trạng thái phòng theo ngày (date-range matrix). Xử lý chống trùng lặp phòng nâng cao ở tầng Database.')">
+      <span class="task-num">2.3</span><span>Room Availability Calendar: Quản lý và kiểm tra lịch phòng trống<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng Price Engine Service: Tính toán giá phòng linh hoạt dựa trên giá gốc kết hợp các biến số: Seasonal pricing (mùa cao điểm), Weekend pricing (cuối tuần), và các chiến dịch khuyến mãi (Promotion discount).')">
+      <span class="task-num">2.4</span><span>Pricing Engine: Công cụ tính toán giá phòng động<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Tối ưu hiệu năng: Cấu hình Redis Cache thông qua Spring Cache (@Cacheable) cho các thao tác đọc/kiểm tra trạng thái phòng trống nặng, thiết lập cơ chế giải phóng cache (eviction) khi trạng thái phòng thay đổi.')">
+      <span class="task-num">2.5</span><span>Redis Caching Layer cho các tác vụ tra cứu trạng thái phòng<span class="tag tag-db">DB</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng Review & Rating module: Xử lý luồng gửi đánh giá sau khi checkout, cơ chế kiểm duyệt trạng thái (PENDING -> APPROVED), áp dụng tính toán trung bình cộng rating bất đồng bộ.')">
+      <span class="task-num">2.6</span><span>Review Module: Đánh giá chất lượng và kiểm duyệt nội dung<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng bộ lọc tìm kiếm chuyên sâu (Search API): Tìm kiếm khách sạn theo vị trí địa lý, khoảng ngày lưu trú, số lượng khách, bộ lọc tiện ích (amenities), hỗ trợ đa tiêu chí sắp xếp.')">
+      <span class="task-num">2.7</span><span>Search Engine API: Tìm kiếm đa tiêu chí, phân trang và sắp xếp<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Viết integration test toàn diện bằng Testcontainers: Khởi chạy database PostgreSQL và Redis độc lập để chạy test chuỗi logic từ tạo khách sạn đến kiểm tra lịch phòng.')">
+      <span class="task-num">2.8</span><span>Integration Test với Testcontainers (PostgreSQL, Redis)<span class="tag tag-test">Test</span></span>
+    </div>
+  </div>
+  <div class="milestone">Milestone: Hoàn thành Core API cho phép tìm kiếm khách sạn theo địa điểm, tính toán chính xác giá phòng theo lịch tùy biến.</div>
+</div>
+
+<div class="connector">↓</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <div class="phase-num" style="background:#E1F5EE;color:#0F6E56">3</div>
+    <div>
+      <div class="phase-title">Phase 3 — Booking & State Orchestration Service</div>
+      <div class="phase-sub">Quản lý luồng đặt phòng phân tán, kiểm soát đồng thời và nhất quán dữ liệu</div>
+    </div>
+    <span class="week-badge">Tuần 7–8</span>
+  </div>
+  <div class="task-list">
+    <div class="task" onclick="sendPrompt('Thiết kế Booking Entity với các trạng thái nghiêm ngặt: PENDING, CONFIRMED, CANCELLED, COMPLETED. Tích hợp cấu trúc Spring State Machine để kiểm soát chặt chẽ các bước chuyển trạng thái.')">
+      <span class="task-num">3.1</span><span>Thiết kế Thực thể <code>Booking</code> & Máy trạng thái (State Machine)<span class="tag tag-db">DB</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng logic đặt phòng (Create Booking): Gọi sang Hotel Service kiểm tra phòng trống qua Feign Client (hoặc gRPC). Áp dụng Redis Distributed Lock (Redisson) dựa trên room_id + date để ngăn chặn tuyệt đối tình trạng Overbooking (Race Condition).')">
+      <span class="task-num">3.2</span><span>Khởi tạo đơn đặt phòng & Kiểm soát đồng thời với Redis Distributed Lock<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Tích hợp Transactional Outbox Pattern: Khi đơn đặt phòng chuyển trạng thái, ghi đè sự kiện booking.confirmed vào bảng outbox trong cùng một Database Transaction. Cấu hình một công cụ quét (Debezium hoặc Spring Scheduler) để lấy sự kiện từ bảng outbox bắn sang RabbitMQ/Kafka, đảm bảo At-Least-Once Delivery.')">
+      <span class="task-num">3.3</span><span>Đảm bảo nhất quán dữ liệu phân tán với Transactional Outbox Pattern<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng logic hủy phòng (Cancellation): Kiểm tra điều kiện chính sách hoàn tiền (Cancellation Policy), cập nhật trạng thái đơn phòng, đồng bộ outbox phát hành sự kiện booking.cancelled.')">
+      <span class="task-num">3.4</span><span>Nghiệp vụ hủy đặt phòng & Áp dụng chính sách hoàn tiền tự động<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng API tra cứu lịch sử giao dịch đặt phòng của khách hàng: Hỗ trợ lọc trạng thái, phân trang nâng cao và tối ưu hóa câu lệnh SQL Join.')">
+      <span class="task-num">3.5</span><span>API Lịch sử đơn phòng: Phân trang, lọc trạng thái tối ưu truy vấn<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Viết integration test kiểm thử Event-Driven: Sử dụng Awaitility để kiểm tra bất đồng bộ, xác nhận sự kiện từ bảng outbox được đưa đến Message Broker chính xác sau khi transaction commit.')">
+      <span class="task-num">3.6</span><span>Integration Test cho mô hình Event-Driven & Khóa phân tán<span class="tag tag-test">Test</span></span>
+    </div>
+  </div>
+  <div class="milestone">Milestone: Tạo đơn đặt phòng thành công, khóa phòng tránh tranh chấp đồng thời, dữ liệu an toàn chuyển tiếp qua bảng Outbox.</div>
+</div>
+
+<div class="connector">↓</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <div class="phase-num" style="background:#FAEEDA;color:#854F0B">4</div>
+    <div>
+      <div class="phase-title">Phase 4 — Payment & Async Notification Service</div>
+      <div class="phase-sub">Xử lý thanh toán tích hợp bên thứ 3 và truyền thông báo bất đồng bộ</div>
+    </div>
+    <span class="week-badge">Tuần 9–10</span>
+  </div>
+  <div class="task-list">
+    <div class="task" onclick="sendPrompt('Xây dựng Payment Service kết nối cổng thanh toán ngoại vi (VNPay/Stripe SDK). Xử lý an toàn các API gọi đi, xây dựng IPN/Webhook Endpoint nhận kết quả thanh toán, kiểm tra chữ ký bảo mật (Checksum/Mac Validation). Cấu hình Resilience4j Circuit Breaker để cô lập lỗi nếu cổng thanh toán gặp sự cố.')">
+      <span class="task-num">4.1</span><span>Tích hợp cổng thanh toán VNPay/Stripe & Cấu hình Chịu lỗi Circuit Breaker<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Cấu hình Message Consumer: Payment Service lắng nghe sự kiện từ Message Broker, khởi tạo giao dịch thanh toán tạm thời, đồng thời phát hành sự kiện payment.completed sau khi xử lý thành công.')">
+      <span class="task-num">4.2</span><span>Xử lý luồng sự kiện Thanh toán bất đồng bộ qua Message Broker<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Thiết lập Notification Service: Lắng nghe song song các chuỗi sự kiện hệ thống (booking.confirmed, payment.completed, booking.cancelled) để điều hướng luồng gửi thông báo đa kênh.')">
+      <span class="task-num">4.3</span><span>Notification Service: Tiêu thụ chuỗi sự kiện để xử lý thông báo async<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng hệ thống Email engine: Sử dụng JavaMailSender kết hợp với Thymeleaf Template engine để thiết kế các biểu mẫu email nghiệp vụ (Xác nhận đặt phòng, Biên lai hóa đơn, Thông báo hủy phòng) bằng Tiếng Việt chỉn chu.')">
+      <span class="task-num">4.4</span><span>Thiết kế Email Engine sử dụng Thymeleaf Template động<span class="tag tag-be">BE</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng kịch bản End-to-End Testing (E2E): Mô phỏng toàn bộ hành trình người dùng từ Đăng nhập Keycloak -> Tìm kiếm khách sạn -> Tạo Booking -> Giả lập Webhook Thanh toán -> Kiểm tra Email hộp thư đến.')">
+      <span class="task-num">4.5</span><span>Kiểm thử tích hợp đầu cuối (E2E Test) toàn chuỗi quy trình hệ thống<span class="tag tag-test">Test</span></span>
+    </div>
+  </div>
+  <div class="milestone">Milestone: Đơn hàng chạy mượt mà từ bước đặt chỗ, thanh toán, xử lý sự kiện bất đồng bộ và tự động gửi email đến khách hàng.</div>
+</div>
+
+<div class="connector">↓</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <div class="phase-num" style="background:#E6F1FB;color:#185FA5">5</div>
+    <div>
+      <div class="phase-title">Phase 5 — Intelligent Tool Layer (Cầu nối Kiến trúc sang AI)</div>
+      <div class="phase-sub">Chuyển đổi năng lực Microservices thành các công cụ cấu trúc (Structured Tools) cho AI</div>
+    </div>
+    <span class="week-badge">Tuần 11</span>
+  </div>
+  <div class="task-list">
+    <div class="task" onclick="sendPrompt('Tích hợp LangChain4j vào hệ thống, cấu hình kết nối an toàn đến các LLM lớn như Google Gemini API / Anthropic Claude API thông qua các biến cấu hình bảo mật. Khởi tạo ChatLanguageModel Bean.')">
+      <span class="task-num">5.1</span><span>Setup Framework AI LangChain4j & Cấu hình LLM Providers<span class="tag tag-infra">Infra</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Sử dụng annotation @Tool của LangChain4j để đóng gói các hàm gọi API tìm kiếm khách sạn (search_hotels) và kiểm tra phòng trống (check_availability), định nghĩa rõ ràng kiểu dữ liệu đầu vào và chuỗi mô tả (Descriptions) để LLM nhận diện đúng.')">
+      <span class="task-num">5.2</span><span>Đóng gói công cụ AI (Tools): Tìm kiếm & Kiểm tra lịch phòng trống<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng @Tool cho cụm nghiệp vụ đặt phòng: create_booking, confirm_booking, cancel_booking, ánh xạ chính xác tham số và trả về dữ liệu định dạng JSON tường minh.')">
+      <span class="task-num">5.3</span><span>Đóng gói công cụ AI (Tools): Khởi tạo đơn đặt phòng & Hủy phòng<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Xây dựng @Tool hỗ trợ phụ trợ: calculate_pricing_details (tra cứu cấu trúc biểu giá động) và get_user_booking_history (lấy lịch sử đặt phòng dựa trên danh tính được xác thực).')">
+      <span class="task-num">5.4</span><span>Đóng gói công cụ AI (Tools): Tính toán biểu giá & Truy vấn lịch sử giao dịch<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Viết unit test cho tầng Tool: Giả lập kết quả trả về của Microservices (Mocking), kiểm tra khả năng chuyển đổi dữ liệu và đảm bảo định dạng JSON đầu ra của các hàm @Tool đúng tiêu chuẩn.')">
+      <span class="task-num">5.5</span><span>Unit Test độc lập kiểm tra cấu trúc dữ liệu đầu ra của Tầng Tool<span class="tag tag-test">Test</span></span>
+    </div>
+  </div>
+  <div class="milestone">Milestone: Mô hình ngôn ngữ (LLM) thông qua cơ chế Tool-Calling có khả năng tự nhận diện tham số và thực thi gọi thành công hàm Java nội bộ.</div>
+</div>
+
+<div class="connector">↓</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <div class="phase-num" style="background:#EEEDFE;color:#534AB7">6</div>
+    <div>
+      <div class="phase-title">Phase 6 — Advanced Multi-Agent System (MAS) Deployment</div>
+      <div class="phase-sub">Xây dựng kiến trúc điều phối mạng lưới Agent thông minh, an toàn và có bộ nhớ lưu trữ</div>
+    </div>
+    <span class="week-badge">Tuần 12–16</span>
+  </div>
+  <div class="task-list">
+    <div class="task" onclick="sendPrompt('Xây dựng Orchestrator Agent đóng vai trò bộ não điều phối trung tâm bằng LangChain4j AiServices. Tích hợp phân loại ý định người dùng (Intent Classifier) để tự động điều hướng ngữ cảnh trò chuyện sang các Sub-Agents chuyên trách.')">
+      <span class="task-num">6.1</span><span>Xây dựng Orchestrator Agent: Bộ điều phối luồng hội thoại trung tâm<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Phát triển Search Agent chuyên sâu: Tiếp nhận các câu hỏi ngôn ngữ tự nhiên phức tạp của người dùng, phân tích trích xuất thực thể (vị trí, ngày, số khách) để kích hoạt gọi tool search_hotels hiệu quả.')">
+      <span class="task-num">6.2</span><span>Phát triển Search Agent: Xử lý truy vấn tìm kiếm bằng ngôn ngữ tự nhiên<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Phát triển Booking Agent tích hợp cơ chế Human-in-the-loop: Khi người dùng yêu cầu đặt phòng qua chat, Agent chỉ được phép tạo một bản ghi nháp (Draft Booking), sau đó tạo một cấu trúc card xác nhận hiển thị tường minh gửi đến UI bắt buộc người dùng bấm xác nhận thủ công trước khi chuyển trạng thái sang PENDING và thanh toán.')">
+      <span class="task-num">6.3</span><span>Phát triển Booking Agent: Thiết lập quy trình kiểm soát Human-in-the-loop<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Phát triển Pricing Agent: Cung cấp năng lực phân tích xu hướng giá phòng, so sánh giá giữa các thời điểm và tự động đưa ra các gợi ý ưu đãi phòng tốt nhất cho khách hàng.')">
+      <span class="task-num">6.4</span><span>Phát triển Pricing Agent: Đưa ra đề xuất ưu đãi phòng thông minh<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Phát triển Support Agent: Xử lý các nghiệp vụ sau bán hàng như giải đáp thắc mắc, điều phối chính sách hủy phòng thông qua gọi tool, tự động chuyển tiếp luồng (Escalation Flow) đến nhân viên tổng đài khi gặp các ca phức tạp ngoài phạm vi xử lý.')">
+      <span class="task-num">6.5</span><span>Phát triển Support Agent: Tự động hóa hỗ trợ sau bán & Điều hướng luồng sự cố<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Thiết lập bộ nhớ dài hạn (Long-term Memory): Sử dụng cơ sở dữ liệu vector pgvector kết hợp với công cụ EmbeddingModel của LangChain4j để lưu trữ lịch sử sở thích của khách hàng. Xây dựng kỹ thuật RAG để gợi ý điểm lưu trú cá nhân hóa dựa trên dữ liệu cũ.')">
+      <span class="task-num">6.6</span><span>Lưu trữ bộ nhớ dài hạn (Memory Layer) sử dụng pgvector & RAG cá nhân hóa<span class="tag tag-ai">AI</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Thiết lập lá chắn bảo mật Agentic Security Protocols: Xây dựng bộ lọc chặn mã độc Prompt Injection bảo vệ hệ thống trước các câu lệnh cố tình phá hoại từ người dùng. Tích hợp nền tảng LangSmith để kiểm soát, truy vết cây gọi (Tracing), đo lường độ trễ (Latency) và chi phí tài nguyên Token tiêu thụ.')">
+      <span class="task-num">6.7</span><span>Agentic Security (Chống Prompt Injection) & Quản lý giám sát hệ thống với LangSmith<span class="tag tag-infra">Infra</span></span>
+    </div>
+    <div class="task" onclick="sendPrompt('Viết kịch bản kiểm thử tích hợp MAS đầu cuối: Giả lập chuỗi hội thoại phức tạp từ người dùng (ví dụ: Tìm phòng Đà Nẵng -> Chọn phòng -> Xác nhận đặt phòng) để kiểm thử khả năng ghi nhớ ngữ cảnh, gọi chuỗi tool của hệ thống Agent.')">
+      <span class="task-num">6.8</span><span>E2E Integration Test: Đánh giá chất lượng và kiểm thử luồng phối hợp Multi-Agent<span class="tag tag-test">Test</span></span>
+    </div>
+  </div>
+  <div class="milestone">Milestone: Hoàn thiện hệ thống Multi-Agent System toàn diện: Người dùng có thể chat tự nhiên để tìm kiếm, xem phân tích giá, và tiến hành đặt phòng dưới sự kiểm soát an toàn của hệ thống.</div>
+</div>
+
+<div style="margin-top:14px;padding:12px 14px;border-radius:var(--border-radius-md);background:var(--color-background-secondary);font-size:13px;color:var(--color-text-secondary);display:flex;gap:10px;align-items:flex-start">
+  <i class="ti ti-info-circle" style="font-size:16px;margin-top:1px;flex-shrink:0" aria-hidden="true"></i>
+  <span>Mẹo viết báo cáo: Click vào từng task ở trên để AI tạo ngay mã nguồn mẫu chuẩn hoặc viết đề cương lý thuyết chi tiết cho mục đó trong tài liệu báo cáo của bạn.</span>
+</div>

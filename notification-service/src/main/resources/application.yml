@@ -1,0 +1,46 @@
+server:
+  port: ${NOTIFY_PORT:8301}
+
+spring:
+  application:
+    name: notification-service
+  profiles:
+    active: dev
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
+  cloud:
+    config:
+      discovery:
+        enabled: ${CONFIG_DISCOVERY_ENABLE:false}
+        service-id: config-server
+  datasource:
+    url: ${DB_HOST:jdbc:postgresql://localhost}:${DB_PORT:5432}/notification_db
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:example}
+    driver-class-name: org.postgresql.Driver
+  mail:
+    host: ${EMAIL.HOST:smtp.gmail.com}
+    port: ${EMAIL.PORT:587}
+    username: ${EMAIL.USERNAME:stayhub.booking.online@gmail.com}
+    password: ${EMAIL.PASSWORD:zzxceksnkmxqrkux}
+    properties:
+      mail:
+        smtp:
+          auth: ${EMAIL.AUTH:true}
+          connection-timeout: 5000
+          timeout: 3000
+          writeTimeout: 5000
+          starttls:
+            enable: ${EMAIL.ENABLE:true}
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_HOST:http://localhost}:${EUREKA_PORT:8761}/eureka/
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh,health,info"

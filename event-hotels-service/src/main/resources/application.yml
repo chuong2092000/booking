@@ -1,0 +1,28 @@
+server:
+  port: ${EVENT_HOTEL_PORT:1102}
+
+spring:
+  application:
+    name: event-hotels-service
+  profiles:
+    active: dev
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
+  cloud:
+    config:
+      discovery:
+        enabled: ${CONFIG_DISCOVERY_ENABLE:false}
+        service-id: config-server
+
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_HOST:http://localhost}:${EUREKA_PORT:8761}/eureka/
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh,health,info"

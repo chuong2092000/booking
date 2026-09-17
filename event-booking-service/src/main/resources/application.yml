@@ -1,0 +1,29 @@
+server:
+  port: ${EVENT_BOOKING_PORT:1101}
+
+spring:
+  application:
+    name: event-booking-service
+  profiles:
+    active: dev
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
+  cloud:
+    config:
+      discovery:
+        enabled: ${CONFIG_DISCOVERY_ENABLE:false}
+        service-id: config-server
+
+
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_HOST:http://localhost}:${EUREKA_PORT:8761}/eureka/
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh,health,info"

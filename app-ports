@@ -1,0 +1,71 @@
+Port
+    11XX:
+        01: event-booking-service
+        02: event-hotel-service
+    21XX:
+        81: zookeeper
+    50XX:
+        00: logstash ( TCP & UDP ) communicate of network for push Logstash by file js from application (use logstash-logback-encoder lib) (config in logback-spring.xml)
+        44: logstash ( lumberjack ) write log by .txt in folder then Filebeat service of logstash will be reading and push Logstash
+    54XX:
+        32: postgresSQL
+    63XX:
+        79: redis
+        80: redis Insight
+    71XX:
+        01: embedding-service
+    80XX:
+        80: api-gateway
+        83: keycloak
+    81XX:
+        01: booking-service
+    82XX:
+        01: hotel-service
+    83XX:
+        01: notification-service
+    84XX:
+        01: payment-service
+    85XX:
+        01: user-service
+    86XX:
+        01: auth-service
+    87XX:
+        61: service-registry
+    88XX:
+        88: config-server
+    90XX:
+        92: kafka cluster
+        93: kafka UI
+    92XX:
+        00: elasticsearch ( REST API )
+    93XX:
+        00: elasticsearch ( TCP ) internal communication of elastic
+
+
+
+
+
+//    @GetMapping("/thanhtoan")
+//    public ResponseEntity<?> test(HttpServletRequest req) {
+//        Map<String, String> fields = new HashMap<>();
+//        Enumeration<String> paramNames = req.getParameterNames();
+//        while (paramNames.hasMoreElements()) {
+//            String name = paramNames.nextElement();
+//            String value = req.getParameter(name);
+//            if (value != null && value.length() > 0) {
+//                fields.put(name, value);
+//            }
+//        }
+//
+//        String vnp_TxnRef = fields.get("vnp_TxnRef");
+//        String vnp_ResponseCode = fields.get("vnp_ResponseCode");
+//        String vnp_TransactionStatus = fields.get("vnp_TransactionStatus");
+//        long vnp_Amount = Long.parseLong(fields.get("vnp_Amount")) / 100;
+//        System.out.println(vnp_ResponseCode);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @GetMapping("/render")
+//    public ResponseEntity<?> uiRend() {
+//        return new ResponseEntity<>("Thanh toán thành công",HttpStatus.OK);
+//    }

@@ -1,0 +1,211 @@
+{
+  "keycloak_oidc_api_reference": {
+    "base_path": "/realms/{realm-name}/protocol/openid-connect",
+    "description": "Tập hợp các endpoints cốt lõi dùng cho luồng xác thực và phân quyền chuẩn OAuth2/OIDC của Keycloak.",
+    "endpoints": [
+      {
+        "name": "Authorization Endpoint",
+        "path": "/auth",
+        "method": "GET",
+        "description": "Sử dụng để bật giao diện đăng nhập (SSO) của Keycloak hoặc khởi tạo luồng Authorization Code.",
+        "headers": {},
+        "parameter_location": "Query Parameters (URL)",
+        "parameters": [
+          {
+            "name": "client_id",
+            "required": true,
+            "type": "string",
+            "description": "Tên định danh của client (VD: booking-system)"
+          },
+          {
+            "name": "response_type",
+            "required": true,
+            "type": "string",
+            "description": "Loại phản hồi mong muốn, thường là 'code'"
+          },
+          {
+            "name": "redirect_uri",
+            "required": true,
+            "type": "string",
+            "description": "URL trả về sau khi đăng nhập thành công (phải khớp cấu hình trên Keycloak)"
+          },
+          {
+            "name": "scope",
+            "required": false,
+            "type": "string",
+            "description": "Phạm vi quyền hạn (VD: 'openid profile email')"
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "string",
+            "description": "Chuỗi ngẫu nhiên để chống tấn công CSRF"
+          }
+        ]
+      },
+      {
+        "name": "Token Endpoint (Password Flow)",
+        "path": "/token",
+        "method": "POST",
+        "description": "Lấy Access Token và Refresh Token trực tiếp bằng Username/Password.",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "parameter_location": "Request Body (Form Data)",
+        "parameters": [
+          {
+            "name": "grant_type",
+            "required": true,
+            "type": "string",
+            "value": "password",
+            "description": "Loại cấp phát token"
+          },
+          {
+            "name": "client_id",
+            "required": true,
+            "type": "string",
+            "description": "Tên định danh của client"
+          },
+          {
+            "name": "username",
+            "required": true,
+            "type": "string",
+            "description": "Tên đăng nhập của người dùng"
+          },
+          {
+            "name": "password",
+            "required": true,
+            "type": "string",
+            "description": "Mật khẩu của người dùng"
+          },
+          {
+            "name": "client_secret",
+            "required": false,
+            "type": "string",
+            "description": "Bắt buộc nếu Client được cấu hình là Confidential"
+          }
+        ]
+      },
+      {
+        "name": "Token Endpoint (Authorization Code Flow)",
+        "path": "/token",
+        "method": "POST",
+        "description": "Đổi mã Authorization Code lấy Access Token và Refresh Token.",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "parameter_location": "Request Body (Form Data)",
+        "parameters": [
+          {
+            "name": "grant_type",
+            "required": true,
+            "type": "string",
+            "value": "authorization_code",
+            "description": "Loại cấp phát token"
+          },
+          {
+            "name": "client_id",
+            "required": true,
+            "type": "string",
+            "description": "Tên định danh của client"
+          },
+          {
+            "name": "code",
+            "required": true,
+            "type": "string",
+            "description": "Mã Authorization Code lấy được từ API /auth"
+          },
+          {
+            "name": "redirect_uri",
+            "required": true,
+            "type": "string",
+            "description": "Phải khớp 100% với redirect_uri đã dùng ở API /auth"
+          },
+          {
+            "name": "client_secret",
+            "required": false,
+            "type": "string",
+            "description": "Bắt buộc nếu Client được cấu hình là Confidential"
+          }
+        ]
+      },
+      {
+        "name": "UserInfo Endpoint",
+        "path": "/userinfo",
+        "method": "GET",
+        "description": "Lấy thông tin chi tiết của người dùng dựa trên Access Token hợp lệ.",
+        "headers": {
+          "Authorization": "Bearer <access_token>"
+        },
+        "parameter_location": "Headers",
+        "parameters": []
+      },
+      {
+        "name": "Logout Endpoint",
+        "path": "/logout",
+        "method": "POST",
+        "description": "Đăng xuất toàn cục, xóa bỏ phiên làm việc (Session) của người dùng.",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "parameter_location": "Request Body (Form Data)",
+        "parameters": [
+          {
+            "name": "client_id",
+            "required": true,
+            "type": "string",
+            "description": "Tên định danh của client"
+          },
+          {
+            "name": "refresh_token",
+            "required": true,
+            "type": "string",
+            "description": "Chuỗi Refresh Token của phiên làm việc cần đăng xuất"
+          },
+          {
+            "name": "client_secret",
+            "required": false,
+            "type": "string",
+            "description": "Bắt buộc nếu Client được cấu hình là Confidential"
+          }
+        ]
+      },
+      {
+        "name": "Token Revocation Endpoint",
+        "path": "/revoke",
+        "method": "POST",
+        "description": "Thu hồi và làm mất hiệu lực một token cụ thể (thường dùng để hủy refresh_token trên một thiết bị).",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "parameter_location": "Request Body (Form Data)",
+        "parameters": [
+          {
+            "name": "client_id",
+            "required": true,
+            "type": "string",
+            "description": "Tên định danh của client"
+          },
+          {
+            "name": "token",
+            "required": true,
+            "type": "string",
+            "description": "Chuỗi token cần thu hồi"
+          },
+          {
+            "name": "token_type_hint",
+            "required": false,
+            "type": "string",
+            "description": "Gợi ý loại token (VD: 'refresh_token' hoặc 'access_token') giúp tối ưu hiệu suất"
+          },
+          {
+            "name": "client_secret",
+            "required": false,
+            "type": "string",
+            "description": "Bắt buộc nếu Client được cấu hình là Confidential"
+          }
+        ]
+      }
+    ]
+  }
+}

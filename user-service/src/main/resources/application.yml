@@ -1,0 +1,42 @@
+server:
+  port: ${USER_PORT:8501}
+
+spring:
+  application:
+    name: user-service
+  profiles:
+    active: dev
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
+  cloud:
+    config:
+      discovery:
+        enabled: ${CONFIG_DISCOVERY_ENABLE:false}
+        service-id: config-server
+#  datasource:
+#    url: ${DB_HOST:jdbc:postgresql://localhost}:${DB_PORT:5432}/user_db
+#    username: ${DB_USERNAME:postgres}
+#    password: ${DB_PASSWORD:example}
+#    driver-class-name: org.postgresql.Driver
+#  data:
+#    web:
+#      pageable:
+#        default-page-size: 10
+#        size-parameter: limit
+#        page-parameter: page
+#        one-indexed-parameters: true
+#      sort:
+#        sort-parameter: sorting
+
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_HOST:http://localhost}:${EUREKA_PORT:8761}/eureka/
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh,health,info"

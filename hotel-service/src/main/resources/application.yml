@@ -1,0 +1,33 @@
+server:
+  port: ${HOTEL_PORT:8201}
+
+spring:
+  application:
+    name: hotel-service
+  profiles:
+    active: dev
+  config:
+    import: ${CONFIG_IMPORT:optional:configserver:http://localhost:8888/}
+  cloud:
+    config:
+      discovery:
+        enabled: ${CONFIG_DISCOVERY_ENABLE:false}
+        service-id: config-server
+  datasource:
+    url: ${DB_HOST:jdbc:postgresql://localhost}:${DB_PORT:5432}/hotel_db
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:example}
+    driver-class-name: org.postgresql.Driver
+
+eureka:
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_HOST:http://localhost}:${EUREKA_PORT:8761}/eureka/
+    register-with-eureka: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "refresh,health,info"
